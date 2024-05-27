@@ -1,0 +1,69 @@
+# This is a basic workflow to help you get started with Actions
+
+name: CI
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the "main" branch
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v4
+
+      # Set up Node.js environment
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '14'
+
+      # Install dependencies
+      - name: Install dependencies
+        run: npm install
+
+      # Run tests
+      - name: Run tests
+        run: npm test
+
+      # Example deployment step (customize for your needs)
+      # Uncomment and configure the following lines if you have deployment steps
+      # - name: Deploy
+      #   run: |
+      #     echo Deploying your project...
+      #     # Add deployment commands here
+
+      # Example of running a one-line script
+      - name: Run a one-line script
+        run: echo Hello, world!
+
+      # Runs a set of commands using the runners shell
+      - name: Run a multi-line script
+        run: |
+          echo Add other actions to build,
+          echo test, and deploy your project.
+```
+
+### Explanation of the Steps:
+1. **actions/checkout@v4**: Checks out your repository so that the job can access it.
+2. **actions/setup-node@v3**: Sets up the Node.js environment, specifying the version of Node.js you want to use.
+3. **Install dependencies**: Runs `npm install` to install the project dependencies.
+4. **Run tests**: Runs `npm test` to execute your test suite.
+5. **Deploy**: This is an example deployment step that is currently commented out. You can customize this section based on your deployment process.
+6. **Run a one-line script**: Prints "Hello, world!" to the console.
+7. **Run a multi-line script**: Prints additional messages to the console.
+
+You can adjust the Node.js version, add other setup steps, or include more specific deployment instructions as needed for your project.
